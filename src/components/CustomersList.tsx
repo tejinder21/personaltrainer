@@ -17,13 +17,14 @@ function CustomersList() {
       .catch(err => console.error(err));
   }, []);
 
-  const filtered = customers.filter(c => {
-    const fullName = `${c.firstname} ${c.lastname}`.toLowerCase();
+  const filteredCustomers = customers.filter(customer => {
+    const fullName = `${customer.firstname} ${customer.lastname}`.toLowerCase();
     return (
       fullName.includes(name.toLowerCase()) &&
-      c.city.toLowerCase().includes(city.toLowerCase())
+      customer.city.toLowerCase().includes(city.toLowerCase())
     );
   });
+
 
   const columns: GridColDef[] = [
     { field: "firstname", headerName: "First name", width: 140 },
@@ -56,7 +57,7 @@ function CustomersList() {
 
       <Paper sx={{ height: 520 }}>
         <DataGrid
-          rows={filtered}
+          rows={filteredCustomers}
           columns={columns}
           getRowId={row => row._links.self.href}
           autoPageSize

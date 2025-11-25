@@ -28,13 +28,9 @@ export function getTrainings() {
 }
 // Hakee asiakkaan nimen yhdestä linkistä
 export async function getCustomerName(url: string): Promise<string> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) return "";
-    const c = await res.json();
-    return `${c.firstname} ${c.lastname}`;
-  } catch {
-    return "";
-  }
+  const res = await fetch(url);
+  if (!res.ok) return "";
+  const customer = await res.json();
+  return `${customer.firstname} ${customer.lastname}`;
 }
 
