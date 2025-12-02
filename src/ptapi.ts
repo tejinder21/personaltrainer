@@ -1,5 +1,7 @@
 // src/ptapi.ts
 
+import type { CustomerForm, TrainingForm } from "./types";
+
 // käytetään samaa nimeä kuin .envissä: VITE_PT_API_URL
 const API_BASE =
   import.meta.env.VITE_PT_API_URL ||
@@ -15,6 +17,60 @@ export function getCustomers() {
       return response.json();
     });
 }
+ //uuden asiakkaan lisääminen 
+export function saveCustomer(newCustomer: CustomerForm) {
+  return fetch(API_BASE + "/customers", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(newCustomer),
+  })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(
+          "Error when adding a new customer: " + response.statusText
+        );
+
+      return response.json();
+    });
+}
+
+// Asiakkaan poisto 
+
+export function deleteCustomer(url: string) {
+  return fetch(url, { method: "DELETE" })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(
+          "Error when deleting customer: " + response.statusText
+        );
+
+      return response.json();
+    });
+}
+
+// harjoitusten lisääminen 
+export function addTraining(newTraining: TrainingForm) {
+  return fetch(API_BASE + "/trainings", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(newTraining),
+  }).then(response => {
+    if (!response.ok) throw new Error("Error when adding training");
+    return response.json();
+  });
+}
+// harjoitusten poisto 
+
+export function deleteTraining(url: string) {
+  return fetch(url, { method: "DELETE" }).then(response => {
+    if (!response.ok)
+      throw new Error("Error when deleting training: " + response.statusText);
+    return response.json();
+  });
+}
+
+
+
 
 // Harjoitukset
 export function getTrainings() {
@@ -26,6 +82,8 @@ export function getTrainings() {
       return response.json();
     });
 }
+
+
 // Hakee asiakkaan nimen yhdestä linkistä
 export async function getCustomerName(url: string): Promise<string> {
   const res = await fetch(url);
@@ -33,4 +91,6 @@ export async function getCustomerName(url: string): Promise<string> {
   const customer = await res.json();
   return `${customer.firstname} ${customer.lastname}`;
 }
+
+
 

@@ -12,6 +12,27 @@ export type Customer = {
   };
 };
 
+// Lomaketta varten käytettävä tyyppi uuden asiakkaan tietojen syöttöön
+export type CustomerForm = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  streetaddress: string;
+  postcode: string;
+  city: string;
+};
+
+
+export type TrainingForm = {
+  date: string;
+  duration: number;
+  activity: string;
+  customer: string; 
+};
+
+
+
 export type Training = {
   date: string;      
   activity: string;
