@@ -21,7 +21,7 @@ type AddTrainingProps = {
 };
 
 export default function AddTraining({ fetchTrainings }: AddTrainingProps) {
-  // Avataanko dialogi? false=kiinni, true=auki
+  
   const [open, setOpen] = useState(false);
 
   // Lista kaikista asiakkaista (dropdowniin)

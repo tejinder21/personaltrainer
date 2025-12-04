@@ -8,6 +8,7 @@ import type { Customer } from "../types";
 import Button from "@mui/material/Button";
 import EditCustomer from "./EditCustomer";
 import AddCustomer from "./AddCustomer";
+import ExportCustomersCsv from "./ExportCustomersCsv"; 
 
 function CustomersList() {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -25,10 +26,12 @@ function CustomersList() {
   }, []);
 
   const filteredCustomers = customers.filter(customer => {
-    const fullName = `${customer.firstname} ${customer.lastname}`.toLowerCase();
+    const fullName = `${customer.firstname ?? ""} ${customer.lastname ?? ""}`.toLowerCase();
+    const customerCity = (customer.city ?? "").toLowerCase();
+
     return (
       fullName.includes(name.toLowerCase()) &&
-      customer.city.toLowerCase().includes(city.toLowerCase())
+      customerCity.includes(city.toLowerCase())
     );
   });
 
@@ -97,6 +100,7 @@ function CustomersList() {
           />
         </Box>
         <AddCustomer fetchCustomers={fetchCustomers} />
+        <ExportCustomersCsv customers={filteredCustomers} /> {/* CSV */}
       </Paper>
 
       <Paper sx={{ height: 520 }}>

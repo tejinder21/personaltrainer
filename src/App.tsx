@@ -6,11 +6,15 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useState } from "react";
+
 import CustomersList from "./components/CustomersList";
 import TrainingsList from "./components/TrainingsList";
+import TrainingsCalendar from "./components/TrainingsCalendar";
 
 function App() {
-  const [page, setPage] = useState<"customers" | "trainings">("customers");
+  const [page, setPage] = useState<"customers" | "trainings" | "calendar">(
+    "customers"
+  );
 
   return (
     <Container maxWidth="lg">
@@ -32,11 +36,19 @@ function App() {
             >
               Trainings
             </Button>
+            <Button
+              color={page === "calendar" ? "secondary" : "inherit"}
+              onClick={() => setPage("calendar")}
+            >
+              Calendar
+            </Button>
           </Stack>
         </Toolbar>
       </AppBar>
 
-      {page === "customers" ? <CustomersList /> : <TrainingsList />}
+      {page === "customers" && <CustomersList />}
+      {page === "trainings" && <TrainingsList />}
+      {page === "calendar" && <TrainingsCalendar />}
 
       <CssBaseline />
     </Container>
