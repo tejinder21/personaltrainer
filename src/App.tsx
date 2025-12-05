@@ -10,9 +10,11 @@ import { useState } from "react";
 import CustomersList from "./components/CustomersList";
 import TrainingsList from "./components/TrainingsList";
 import TrainingsCalendar from "./components/TrainingsCalendar";
+import TrainingsStats from "./components/TrainingsStats";
+
 
 function App() {
-  const [page, setPage] = useState<"customers" | "trainings" | "calendar">(
+  const [page, setPage] = useState<"customers" | "trainings" | "calendar" | "stats">(
     "customers"
   );
 
@@ -42,6 +44,12 @@ function App() {
             >
               Calendar
             </Button>
+            <Button
+    color={page === "stats" ? "secondary" : "inherit"}
+    onClick={() => setPage("stats")}
+  >
+    Stats
+  </Button>
           </Stack>
         </Toolbar>
       </AppBar>
@@ -49,6 +57,7 @@ function App() {
       {page === "customers" && <CustomersList />}
       {page === "trainings" && <TrainingsList />}
       {page === "calendar" && <TrainingsCalendar />}
+      {page === "stats" && <TrainingsStats />}
 
       <CssBaseline />
     </Container>

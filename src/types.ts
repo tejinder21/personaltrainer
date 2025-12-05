@@ -43,6 +43,18 @@ export type Training = {
   };
 };
 
+export type CalendarEvent = {
+  title: string;
+  start: Date;
+  end: Date;
+};
+
+// Tätä dataa näytetään kaaviossa
+export type ActivityStat = {
+  activity: string;
+  totalMinutes: number;
+};
+
 
 export type TrainingRow = Training & {
   customerName: string;
