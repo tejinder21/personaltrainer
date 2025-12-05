@@ -70,7 +70,7 @@ function TrainingsStats() {
                         }}
                     />
                     <Tooltip />
-                    <Bar dataKey="totalMinutes" fill="#8884d8" />
+                    <Bar dataKey="totalMinutes" fill="#160be6ff" />
                 </BarChart>
             </ResponsiveContainer>
         </Paper>
