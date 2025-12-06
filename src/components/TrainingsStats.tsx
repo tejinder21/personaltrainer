@@ -57,7 +57,7 @@ function TrainingsStats() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                         dataKey="activity"
-                        // jos activity-nimiä on paljon, vino teksti helpottaa lukemista
+                        
                         angle={-20}
                         textAnchor="end"
                         interval={0}

@@ -1,4 +1,3 @@
-// src/ptapi.ts
 
 import type { CustomerForm, TrainingForm } from "./types";
 
