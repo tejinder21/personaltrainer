@@ -25,14 +25,20 @@ function CustomersList() {
     fetchCustomers();
   }, []);
 
-  const filteredCustomers = customers.filter(customer => {
+  const filteredCustomers = customers.filter((customer) => {
+    const nameFilter = name.trim().toLowerCase();
+    const cityFilter = city.trim().toLowerCase();
+
     const fullName = `${customer.firstname ?? ""} ${customer.lastname ?? ""}`.toLowerCase();
     const customerCity = (customer.city ?? "").toLowerCase();
 
-    return (
-      fullName.includes(name.toLowerCase()) &&
-      customerCity.includes(city.toLowerCase())
-    );
+    const matchesName =
+      !nameFilter || fullName.includes(nameFilter);
+
+    const matchesCity =
+      !cityFilter || customerCity.includes(cityFilter);
+
+    return matchesName && matchesCity;
   });
 
   const handleDelete = (customer: Customer) => {
@@ -100,7 +106,7 @@ function CustomersList() {
           />
         </Box>
         <AddCustomer fetchCustomers={fetchCustomers} />
-        <ExportCustomersCsv customers={filteredCustomers} /> {/* CSV */}
+        <ExportCustomersCsv customers={filteredCustomers} />
       </Paper>
 
       <Paper sx={{ height: 520 }}>
