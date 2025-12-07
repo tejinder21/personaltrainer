@@ -29,7 +29,7 @@ function TrainingsStats() {
                 // 1) Ryhmitellään treenit activity-kentän mukaan
                 const grouped = groupBy(trainings, t => t.activity || "Unknown");
 
-                // 2) Lasketaan jokaiselle activitylle duration-minuutit yhteen
+                // 2) Lasketaan jokaiselle activitylle duration-minuutit yhteen frekj
                 const result: ActivityStat[] = Object.keys(grouped).map(activity => ({
                     activity,
                     totalMinutes: sumBy(grouped[activity], "duration"),
